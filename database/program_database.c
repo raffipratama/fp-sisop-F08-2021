@@ -21,5 +21,21 @@ typedef struct column {
 } column;
 
 int main(){
-  
+  pid_t pid, sid;
+    pid = fork();
+ 
+    if (pid < 0) {
+        exit(EXIT_FAILURE);
+    }
+ 
+    if (pid > 0) {
+        exit(EXIT_SUCCESS);
+    }
+ 
+    umask(0);
+ 
+    sid = setsid();
+    if (sid < 0) {
+        exit(EXIT_FAILURE);
+    }
 }
