@@ -14,11 +14,7 @@
 #include <time.h>
 #include <wait.h>
 
-typedef struct column {
-    char name[1024];
-    char type[8];
-    char contents[100][1024];
-} column;
+
 
 int main(){
   pid_t pid, sid;
