@@ -6,6 +6,7 @@
 #include <unistd.h>
 #include <arpa/inet.h>
 #include <math.h>
+#define port 8080
 
 int main(int argc, char const *argv[]) {
     struct sockaddr_in address;
