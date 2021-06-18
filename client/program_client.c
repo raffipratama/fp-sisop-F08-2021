@@ -10,8 +10,10 @@
 
 int main(int argc, char const *argv[]) {
     struct sockaddr_in address;
-    int sock = 0,
+    int sock = 0;
+    int isRoot=0;
     struct sockaddr_in serv_addr;
+    int valread;
   
   char buffer[1024];
 
@@ -29,5 +31,17 @@ int main(int argc, char const *argv[]) {
         printf("\nInvalid address/ Address not supported \n");
         return -1;
     }
+    if (connect(sock, (struct sockaddr *)&serv_addr, sizeof(serv_addr)) < 0) {
+        printf("\nConnection Failed \n");
+        return -1;
+    }
+    if(getuid() == 0) isRoot = 1;
+    send(sock,&isRoot,sizeof(isRoot),0);
     
+    while(1){
+    valread = read( sock , buffer, 2048);
+    printf("%s\n",buffer );
+    memset(buffer,0,2048);
+    
+    }
 }
